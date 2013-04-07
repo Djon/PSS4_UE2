@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{832D4C98-5450-4FBD-9D44-6E3AC1F5659D}</ProjectGuid>
+    <ProjectGuid>{40227C39-E8A9-47DE-9303-1B05B00F57F1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Bsp01</RootNamespace>
+    <RootNamespace>Bsp01_SingleThreaded</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,21 +74,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="SortMergeMT.h" />
-    <ClInclude Include="ThreadBase.h" />
-    <ClInclude Include="ThreadFileToList.h" />
-    <ClInclude Include="ThreadListToFile.h" />
-    <ClInclude Include="ThreadMerge.h" />
-    <ClInclude Include="ThreadSort.h" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SortMergeST.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SortMergeMT.cpp" />
-    <ClCompile Include="ThreadBase.cpp" />
-    <ClCompile Include="ThreadFileToList.cpp" />
-    <ClCompile Include="ThreadListToFile.cpp" />
-    <ClCompile Include="ThreadMerge.cpp" />
-    <ClCompile Include="ThreadSort.cpp" />
+    <ClInclude Include="SortMergeST.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

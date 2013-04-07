@@ -76,3 +76,6 @@ packages/
 
 #Test files
 *.testsettings
+
+#Textfiles
+*.txt
