@@ -14,13 +14,13 @@ int main() {
 		vector<string> strVec;
 		//SortMergeMT(strVec, "sorted.txt");	//exception: no valid vector
 		
+		/*strVec.push_back("");
 		strVec.push_back("");
 		strVec.push_back("");
-		strVec.push_back("");
-		strVec.push_back("");
+		strVec.push_back("");*/
 		//SortMergeMT(strVec, "sorted.txt");	//exception: no valid string
 		
-		strVec.clear();
+		/*strVec.clear();*/
 
 		strVec.push_back("dutch.txt");
 		strVec.push_back("finnish.txt");
