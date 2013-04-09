@@ -15,8 +15,13 @@ void AdminTool::StartProgram(std::string const& ProgramName)
 
 	ZeroMemory(&pi, sizeof(pi));
 
+	//convert the string to char*
+	char* pProgramName = new char[ProgramName.size()+1];
+	const char* pTemp = ProgramName.c_str();
+	strcpy_s(pProgramName, ProgramName.size()+1, pTemp); 
+
 	//start new process
-	if (!CreateProcess(ProgramName.c_str(),0,0,0,false,0,0,0,&si,&pi))
+	if (!CreateProcess(0,pProgramName,0,0,false,0,0,0,&si,&pi))
 	{
 		throw("CreateProcess failed: " + Hlp::ErrMsg(GetLastError()));
 	}
