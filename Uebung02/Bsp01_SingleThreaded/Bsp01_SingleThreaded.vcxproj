@@ -76,9 +76,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SortMergeST.cpp" />
+    <ClCompile Include="StopWatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SortMergeST.h" />
+    <ClInclude Include="StopWatch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,14 @@
+///////////////////////////////////////////////////////////////////////////
+// Workfile : SortMergeMT.cpp
+// Author : Reinhard Penn, Bernhard Selymes
+// Date : 09.04.2013
+// Description : Multithreaded sort and merge of lists
+///////////////////////////////////////////////////////////////////////////
+
 #include <list>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include "SortMergeMT.h"
 #include "ThreadFileToList.h"
 #include "ThreadListToFile.h"
@@ -45,8 +53,8 @@ void SortMergeMT(std::vector<std::string> const& filenames,
 		ThreadFtLHandles.push_back(tFtL->GetDuplicateHdl());	// save handle
 		tFtL->Start();
 	}
-	
-	// sort: first level
+
+	// sort
 	std::vector<HANDLE> ThreadSortHandles;	
 	for (size_t i = 0; i < numFiles; ++i)
 	{
@@ -67,31 +75,15 @@ void SortMergeMT(std::vector<std::string> const& filenames,
 	tM1->Start();
 	tM2->Start();
 	
-	// sort: second level
-	ThreadSort* tS1 = new ThreadSort;
-	ThreadSort* tS2 = new ThreadSort;
-	tS1->Init(StringLists[0], ThreadMergeHandles[0]);
-	tS2->Init(StringLists[2], ThreadMergeHandles[1]);
-	ThreadSortHandles.push_back(tS1->GetDuplicateHdl());
-	ThreadSortHandles.push_back(tS2->GetDuplicateHdl());
-	tS1->Start();
-	tS2->Start();
-
 	// merge: second level
 	ThreadMerge* tM3 = new ThreadMerge;
-	tM3->Init(StringLists[0], StringLists[2], ThreadSortHandles[4], ThreadSortHandles[5]);
+	tM3->Init(StringLists[0], StringLists[2], ThreadMergeHandles[0], ThreadMergeHandles[1]);
 	ThreadMergeHandles.push_back(tM3->GetDuplicateHdl());
-	tM3->Start();
-
-	// sort: third level
-	ThreadSort* tS3 = new ThreadSort;
-	tS3->Init(StringLists[0], ThreadMergeHandles[2]);
-	ThreadSortHandles.push_back(tS3->GetDuplicateHdl());
-	tS3->Start();
-
+	tM3->Start();	
+	
 	// list to file
 	ThreadListToFile* tLtF1 = new ThreadListToFile;
-	tLtF1->Init(filenameOutput, StringLists[0], ThreadSortHandles[6]);
+	tLtF1->Init(filenameOutput, StringLists[0], ThreadMergeHandles[2]);
 	HANDLE hdlListToFile = tLtF1->GetDuplicateHdl();
 	tLtF1->Start();
 	

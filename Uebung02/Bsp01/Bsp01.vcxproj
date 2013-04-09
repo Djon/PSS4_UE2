@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="SortMergeMT.h" />
+    <ClInclude Include="StopWatch.h" />
     <ClInclude Include="ThreadBase.h" />
     <ClInclude Include="ThreadFileToList.h" />
     <ClInclude Include="ThreadListToFile.h" />
@@ -84,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SortMergeMT.cpp" />
+    <ClCompile Include="StopWatch.cpp" />
     <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ThreadFileToList.cpp" />
     <ClCompile Include="ThreadListToFile.cpp" />

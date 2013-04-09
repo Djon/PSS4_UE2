@@ -1,3 +1,10 @@
+///////////////////////////////////////////////////////////////////////////
+// Workfile : ThreadListToFile.cpp
+// Author : Reinhard Penn, Bernhard Selymes
+// Date : 09.04.2013
+// Description : Thread that writes a list into a file
+///////////////////////////////////////////////////////////////////////////
+
 #include <cassert>
 #include <fstream>
 #include <iostream>

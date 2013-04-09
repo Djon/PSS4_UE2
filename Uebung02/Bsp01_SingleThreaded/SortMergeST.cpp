@@ -1,7 +1,16 @@
+///////////////////////////////////////////////////////////////////////////
+// Workfile : SortMergeST.cpp
+// Author : Reinhard Penn, Bernhard Selymes
+// Date : 09.04.2013
+// Description : Singlethreaded Version of SortMergeMT(...)
+///////////////////////////////////////////////////////////////////////////
+
 #include <sstream>
 #include <list>
 #include <fstream>
+#include <iostream>
 #include "SortMergeST.h"
+#include "StopWatch.h"
 
 typedef std::list<std::string> TStringList;
 
@@ -10,14 +19,14 @@ void SortMergeST(std::vector<std::string> const& filenames,
 {
 	if (filenameOutput.empty())
 	{
-		std::string error = "Error in SortMergeST::SortMergeMT: no valid filenameOutput";
+		std::string error = "Error in SortMergeST::SortMergeST: no valid filenameOutput";
 		throw (error);
 	}
 
 	size_t const numFiles = 4;
 	if (filenames.size() != numFiles)
 	{
-		std::string error = "Error in SortMergeST::SortMergeMT: no valid vector";
+		std::string error = "Error in SortMergeST::SortMergeST: no valid vector";
 		throw (error);
 	}
 
@@ -26,7 +35,7 @@ void SortMergeST(std::vector<std::string> const& filenames,
 		if (filenames[i].empty())
 		{
 			std::stringstream error;
-			error << "Error in SortMergeMT::SortMergeST: no valid string at index " << i;
+			error << "Error in SortMergeST::SortMergeST: no valid string at index " << i;
 			throw (error.str());
 		}
 	}
@@ -57,7 +66,7 @@ void SortMergeST(std::vector<std::string> const& filenames,
 
 	// sort
 	strList.sort();
-	
+
 	// list to file
 	std::ofstream fs;
 	fs.open(filenameOutput);
