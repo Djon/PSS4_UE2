@@ -10,10 +10,10 @@ void AdminTool::StartProgram(std::string const& ProgramName)
 	STARTUPINFO si; //specifies how the main window of the new process should appear
 	PROCESS_INFORMATION pi; //filled by CreateProcess (IDs and so on)
 
-	memset(&si, 0, sizeof(si));
+	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 
-	memset(&pi, 0, sizeof(pi));
+	ZeroMemory(&pi, sizeof(pi));
 
 	//start new process
 	if (!CreateProcess(ProgramName.c_str(),0,0,0,false,0,0,0,&si,&pi))
@@ -64,8 +64,7 @@ void AdminTool::ListProcesses()
 	std::cout << std::setw(PriorityWidth)		<< std::setfill(FillSign)	<< std::left << "BasePriority";
 	std::cout << std::setw(ThreadCountWidth)	<< std::setfill(FillSign)	<< std::left << "Thread Count";
 	std::cout << std::endl;
-	std::cout << std::setw(ProcessNameWidth+PIDWidth+PriorityWidth+ThreadCountWidth) << std::setfill(FillSign) << std::left;
-	std::cout << std::endl;
+	std::cout << std::string(ProcessNameWidth+PIDWidth+PriorityWidth+ThreadCountWidth, LineDivider) << std::endl;
 
 	// Now walk the snapshot of processes, and
 	// display information about each process in turn
@@ -102,5 +101,74 @@ void AdminTool::KillProcess(DWORD const& ProcessId)
 
 void AdminTool::PrintSystemInfo()
 {
+	_SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
 
+	int const HeaderWidth		= 30;
+	int const HardwareWidth		= 25;
+	int const SoftwareWidth		= 13;
+	char const FillSign			= ' ';
+	char const LineDivider		= '-';
+
+
+	//Hardware
+	std::cout << "System Information <HARDWARE>:" << std::endl;
+	std::cout << std::string(HeaderWidth, LineDivider) << std::endl;
+
+	std::cout << std::setw(HardwareWidth) << std::setfill(FillSign) << std::left << "Processor Type";
+	std::cout << ": " << sysInfo.dwProcessorType << std::endl;
+
+	std::cout << std::setw(HardwareWidth) << "Architecture";
+	if (sysInfo.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL)
+	{		
+		std::cout << ": " << "Intel CPU or compatibles" << std::endl;
+
+		std::cout << std::setw(HardwareWidth) << "Processor Level (Family)";
+		std::cout << ": " << sysInfo.wProcessorLevel << std::endl;
+
+		std::cout << std::setw(HardwareWidth) << "Model and Stepping MMSS";
+		std::cout << ": 0x" << std::hex << sysInfo.wProcessorRevision << std::dec << std::endl;
+	}
+	else
+	{
+		std::cout << ": " << "Unknown architecture" << std::endl;
+	}
+
+	std::cout << std::setw(HardwareWidth) << "Number of Processors";
+	std::cout << ": " << sysInfo.dwNumberOfProcessors << std::endl;
+	std::cout << std::endl;
+
+	
+	//TODO Features:
+	std::cout << std::endl;
+
+
+	//Software
+	std::cout << "System Information <SOFTWARE>:" << std::endl;
+	std::cout << std::string(HeaderWidth, LineDivider) << std::endl;
+
+	char computerName[MAX_COMPUTERNAME_LENGTH + 1];
+	DWORD size = sizeof(computerName) / sizeof(computerName[0]);
+
+	if (!GetComputerName(computerName, &size))
+	{
+		throw("GetComputerName failed: " + Hlp::ErrMsg(GetLastError()));
+	}
+	std::cout << std::setw(SoftwareWidth) << "Computer Name";
+	std::cout << ": " << computerName << std::endl;
+
+	OSVERSIONINFO osVersionInfo;
+	ZeroMemory(&osVersionInfo, sizeof(osVersionInfo));
+	osVersionInfo.dwOSVersionInfoSize = sizeof(osVersionInfo);
+
+	if (!GetVersionEx(&osVersionInfo))
+	{
+		throw("GetVersionEx failed: " + Hlp::ErrMsg(GetLastError()));
+	}
+	std::cout << std::setw(SoftwareWidth) << "OS Version";
+	std::cout << ": " << "Major: " << osVersionInfo.dwMajorVersion 
+		<< "  Minor: " << osVersionInfo.dwMinorVersion << std::endl;
+
+	std::cout << std::setw(SoftwareWidth) << "OS Revision";
+	std::cout << ": " << osVersionInfo.szCSDVersion << std::endl;
 }

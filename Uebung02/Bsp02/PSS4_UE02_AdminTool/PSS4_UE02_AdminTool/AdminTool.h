@@ -10,13 +10,10 @@
 class AdminTool
 {
 public:
-	void StartProgram(std::string const& ProgramName);
-	void ListProcesses();
-	void KillProcess(DWORD const& ProcessId);
-	void PrintSystemInfo();
-
-private:
-
+	static void StartProgram(std::string const& ProgramName);
+	static void ListProcesses();
+	static void KillProcess(DWORD const& ProcessId);
+	static void PrintSystemInfo();
 };
 
 #endif
