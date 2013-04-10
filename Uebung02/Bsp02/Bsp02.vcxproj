@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D73FF218-B072-4316-8057-28DD5EC4A64C}</ProjectGuid>
+    <ProjectGuid>{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PSS4_UE02_AdminTool</RootNamespace>
+    <RootNamespace>Bsp02</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -50,7 +50,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,13 +74,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdminTool.h" />
+    <ClInclude Include="Hlp.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="AdminTool.cpp" />
     <ClCompile Include="Hlp.cpp" />
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AdminTool.h" />
-    <ClInclude Include="Hlp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

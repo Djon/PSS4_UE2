@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bsp01", "Bsp01\Bsp01.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bsp01_SingleThreaded", "Bsp01_SingleThreaded\Bsp01_SingleThreaded.vcxproj", "{40227C39-E8A9-47DE-9303-1B05B00F57F1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bsp02", "Bsp02\Bsp02.vcxproj", "{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{40227C39-E8A9-47DE-9303-1B05B00F57F1}.Debug|Win32.Build.0 = Debug|Win32
 		{40227C39-E8A9-47DE-9303-1B05B00F57F1}.Release|Win32.ActiveCfg = Release|Win32
 		{40227C39-E8A9-47DE-9303-1B05B00F57F1}.Release|Win32.Build.0 = Release|Win32
+		{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}.Debug|Win32.Build.0 = Debug|Win32
+		{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}.Release|Win32.ActiveCfg = Release|Win32
+		{BF5B3230-0B80-4BD2-9010-D65F6B6DC907}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
