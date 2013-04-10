@@ -4,9 +4,6 @@
 #include <string>
 #include <Windows.h>
 
-//möglicherweise alles static
-
-
 class AdminTool
 {
 public:

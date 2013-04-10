@@ -166,35 +166,170 @@ Error in SortMergeST::SortMergeST: no valid filenameOutput
 \section{Beispiel 2}
 
 \subsection{Funktionsbeschreibung}
+Das AdminTool besteht aus einer Klasse die nur statische Funktionen enthält. Die Funktionen wurden statisch erstellt, da die Funktionalität des AdminTools nicht vom jeweiligen Objekt abhängig ist. Das AdminTool kann Prozesse starten und beenden. Zum Prozess starten muss der jeweilige Name des Programms übergeben werden, zum beenden wird die Prozess-Id übergeben. Eine weitere Funktion des AdminTools ist es alle laufenden Prozesse aufzulisten. Dabei wird Prozessname, ProzessId, BasePriority und ThreadCount ausgegeben. Die letzte Funktion des AdminTools ist es Systeminformationen auszugeben. Zum Beispiel: Prozessorarchitektur, Anzahl der Prozessorkerne, Computername, OS-Version,... . Die Fehlerbehandlung erfolgt mittels Exception die im Testtreiber abgefangen werden. Im Testtreiber wird ein einfaches Menü zur Verwaltung der Funktionen des AdminTools erzeugt.
+\newline
+\newline
+\textbf{Schnittstelle:}
+\newline
+Name: StartProgram
+\newline
+Returnwert: void
+\newline
+Parameter: 
+\newline
+size\_t ProgramName: Name des zu startenden Programms
+\newline
+\newline
+Name: ListProcesses
+\newline
+Returnwert: void
+\newline
+\newline
+Name: KillProcess
+\newline
+Returnwert: void
+\newline
+Parameter: 
+\newline
+size\_t ProcessId: Prozess Id, des Prozesses der terminiert wird
+\newline
+\newline
+Name: PrintSystemInfo
+\newline
+Returnwert: void
+\newline
 
-%\newline
-%\newline
-%\textbf{Schnittstelle:}
-%\newline
-%Name: CreateThreadsFib
-%\newline
-%Returnwert: void
-%\newline
-%Parameter: 
-%\newline
-%size\_t num: Anzahl der zu erstellenden Threads
-%\newline
-%size\_t fibMax: Grenzwert der Fibonacci Berechnungen
 
 
+
+\newpage
 \subsection{Sourcecode}
-%\lstinputlisting[language={c++}]{\path/MainThreadWorkerThread/Fibonacci.h}
-%\lstinputlisting[language={c++}]{\path/MainThreadWorkerThread/Fibonacci.cpp}
-%\newpage
-%\lstinputlisting[language={c++}]{\path/MainThreadWorkerThread/MainThreadWorkerThread.h}
-%\lstinputlisting[language={c++}]{\path/MainThreadWorkerThread/MainThreadWorkerThread.cpp}
-%\newpage
-%\lstinputlisting[language={c++}]{\path/MainThreadWorkerThread/main.cpp}
+\lstinputlisting[language={c++}]{\path/../PSS4_UE02_AdminTool/PSS4_UE02_AdminTool/AdminTool.h}
+\newpage
+\lstinputlisting[language={c++}]{\path/../PSS4_UE02_AdminTool/PSS4_UE02_AdminTool/AdminTool.cpp}
+\newpage
+\lstinputlisting[language={c++}]{\path/../PSS4_UE02_AdminTool/PSS4_UE02_AdminTool/main.cpp}
 
+\newpage
 \subsection{Testausgabe}
 
 \begin{verbatim}
+Enter command: ?
+StartProgram: 0
+ListProcesses: 1
+Remove: 2
+KillProcess: 3
+PrintSystemInfo: 4
+Exit: e
 
+Enter command: 0
+Enter program name: not_existing
+CreateProcess failed: Das System kann die angegebene Datei nicht finden.
+
+Enter command: 0
+Enter program name: notepad
+
+Enter command: 1
+Process                  PID       BasePriority        Thread Count
+----------------------------------------------------------------------
+[System Process]         0         0                   4
+System                   4         8                   114
+smss.exe                 296       11                  3
+csrss.exe                392       13                  9
+wininit.exe              464       13                  3
+csrss.exe                492       13                  13
+services.exe             524       9                   7
+lsass.exe                540       9                   8
+lsm.exe                  548       8                   10
+svchost.exe              656       8                   10
+svchost.exe              740       8                   8
+atiesrxx.exe             800       8                   6
+winlogon.exe             848       13                  3
+svchost.exe              900       8                   23
+svchost.exe              932       8                   34
+svchost.exe              972       8                   21
+svchost.exe              1008      8                   39
+UMVPFSrv.exe             324       8                   3
+svchost.exe              1124      8                   16
+atieclxx.exe             1228      8                   10
+spoolsv.exe              1396      8                   13
+sched.exe                1424      8                   7
+svchost.exe              1448      8                   19
+armsvc.exe               1564      8                   4
+Fuel.Service.exe         1588      8                   6
+avguard.exe              1612      8                   35
+bitkinexsvc.exe          1648      8                   4
+jtagserver.exe           1736      8                   4
+sqlservr.exe             1760      8                   35
+mysqld.exe               1780      8                   22
+sqlwriter.exe            1928      8                   4
+TeamViewer_Service.exe   1104      8                   6
+VC9SecS.exe              1496      8                   5
+WLIDSVC.EXE              960       8                   8
+WLIDSVCM.EXE             2272      8                   3
+avshadow.exe             2660      8                   3
+conhost.exe              2668      8                   1
+avwebgrd.exe             2700      8                   10
+SearchIndexer.exe        2808      8                   13
+svchost.exe              2960      8                   16
+wmpnetwk.exe             2984      8                   13
+svchost.exe              2540      8                   26
+dwm.exe                  1952      13                  5
+explorer.exe             3008      8                   25
+ddm.exe                  3384      8                   9
+avgnt.exe                3708      8                   11
+acrotray.exe             3808      8                   2
+MOM.exe                  3876      8                   15
+svchost.exe              3436      8                   6
+CCC.exe                  5084      8                   27
+svchost.exe              5636      8                   11
+dllhost.exe              5344      8                   5
+PresentationFontCache.exe4128      8                   6
+texmaker.exe             6796      8                   4
+devenv.exe               7896      8                   26
+vcpkgsrv.exe             6092      8                   5
+mspdbsrv.exe             3868      8                   3
+wuauclt.exe              4056      8                   3
+MpCmdRun.exe             6440      8                   8
+vcpkgsrv.exe             1696      8                   8
+cmd.exe                  7760      8                   1
+conhost.exe              3884      8                   2
+PSS4_UE02_AdminTool.exe  7964      8                   1
+notepad.exe              6640      8                   1
+
+Enter command: 2
+Enter process Id of process to kill: 123123123
+OpenProcess failed: Falscher Parameter.
+
+Enter command: 2
+Enter process Id of process to kill: 0
+OpenProcess failed: Falscher Parameter.
+
+Enter command: 2
+Enter process Id of process to kill: 4
+OpenProcess failed: Zugriff verweigert
+
+Enter command: 2
+Enter process Id of process to kill: 6640
+
+Enter command: 3
+System Information <HARDWARE>:
+------------------------------
+Processor Type           : 586
+Architecture             : Intel CPU or compatibles
+Processor Level (Family) : 16
+Model and Stepping MMSS  : 0x402
+Number of Processors     : 4
+
+
+System Information <SOFTWARE>:
+------------------------------
+Computer Name: REINHARD-PC
+OS Version   : Major: 6  Minor: 1
+OS Revision  : Service Pack 1
+
+Enter command: e
+Drücken Sie eine beliebige Taste . . .
 \end{verbatim}
 
 
